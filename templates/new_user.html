@@ -1,0 +1,23 @@
+<!-- templates/add_user.html -->
+{% extends 'base.html' %}
+
+{% block title %}Create a user{% endblock %}
+
+{% block content %}
+<h2>Create a user</h2>
+<form method="POST" action="/users/new">
+    <p>First Name: 
+    <input type="text" name="first_name" required> 
+    </p>
+    
+    <p>Last Name: 
+    <input type="text" name="last_name" required> 
+    </p>
+    
+    <p>Image URL:
+    <input type="url" name="image_url" placeholder="Provide an image of this user">
+    </p>
+
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+{% endblock %}

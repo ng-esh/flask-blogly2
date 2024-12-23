@@ -1,0 +1,13 @@
+<!-- templates/user_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+
+{% block content %}
+<h2>{{ user.first_name }} {{ user.last_name }}</h2>
+<img src="{{ user.image_url }}" alt="{{ user.full_name }}">
+<a href="/users/{{ user.id }}/edit" class="btn btn-primary">Edit</a>
+<form method="POST" action="/users/{{ user.id }}/delete" style="display:inline;">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+{% endblock %}
