@@ -1,13 +1,32 @@
 <!-- templates/user_detail.html -->
 {% extends 'base.html' %}
 
-{% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+{% block title %}{{ user.full_name}}{% endblock %}
 
 {% block content %}
+
 <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-<img src="{{ user.image_url }}" alt="{{ user.full_name }}">
+
+{% if user.image_url %}
+    <div>
+        <img src="{{ user.image_url }}" alt="{{ user.full_name }}">
+    </div>
+{% endif %}
+
 <a href="/users/{{ user.id }}/edit" class="btn btn-primary">Edit</a>
-<form method="POST" action="/users/{{ user.id }}/delete" style="display:inline;">
+<form method="POST" action="/users/{{ user.id }}/delete">
     <button type="submit" class="btn btn-danger">Delete</button>
 </form>
+
+<ul>
+    {% for post in user.posts %}
+    <li>
+      <a href="/posts/{{ post.id}}">{{ post.title }}</a>
+      <small>{{ post.friendly_date }}</small>
+    </li>
+    {% endfor %}
+</ul>
+
+<p><a href="/users/{{ user.id }}/posts/new" class="btn btn-primary">Add Post</a></p>
+
 {% endblock %}
